@@ -26,7 +26,7 @@ Enquanto numero de Rua Y menor que 1500:
 - Destino: Rua Z, numero Destino mais 100
 - Continue por 100 metros
 
-Se Rua Y fechada em numero Atual, pegue a rotatoria na 1a saida
+Se Rua Y fechada em numero Atual, pegue a rotatoria Saida 1
 
 Rotatoria:
 - Saida 1: vire a direita em Rua Z; em 8 kilômetros, você chegará em Destino
