@@ -1,4 +1,4 @@
-from tokens import COLON, COMMA, EOF, IDEN, INT, KEYWORDS, NL, OPTION, SEMICOLON
+from tokens import ABERTA, COLON, COMMA, DESTINO, DIREITA, EM, ENQUANTO, EOF, ESQUERDA, ESTA, FECHADA, IDEN, INT, KEYWORDS, MAIOR, MAIS, MENOR, MENOS, METROS, NL, OPTION, PARTIDA, ROTATORIA, RUA, SE, SEMICOLON, VIRE
 
 class Token:
     def __init__(self, tipo: str):
@@ -69,3 +69,128 @@ class Tokenizer:
             return
         raise Exception(f"Letra \"{self.source[self.position]}\" não existente")
     
+class Parser:
+    def __init__(self):
+        self.tokenizer: Tokenizer
+
+    def parse_code(self):
+        token = self.tokenizer.next
+        if token.type != PARTIDA:
+            raise Exception()
+        self.tokenizer.selectNext()
+        token = self.tokenizer.next
+        if token.type != COLON:
+            raise Exception()
+        self.tokenizer.selectNext()
+        token = self.tokenizer.next
+        if token.type != RUA:
+            raise Exception()
+        self.tokenizer.selectNext()
+        token = self.tokenizer.next
+        if token.type != NL:
+            raise Exception()
+        self.tokenizer.selectNext()
+        token = self.tokenizer.next
+        if token.type != DESTINO:
+            raise Exception()
+        self.tokenizer.selectNext()
+        token = self.tokenizer.next
+        if token.type != COLON:
+            raise Exception()
+        self.tokenizer.selectNext()
+        token = self.tokenizer.next
+        if token.type != RUA:
+            raise Exception()
+        self.tokenizer.selectNext()
+        token = self.tokenizer.next
+        if token.type != NL:
+            raise Exception()
+        self.tokenizer.selectNext()
+
+        return self.parse_direcao()
+
+    def parse_direcao(self):
+        self.parse_comando()
+        token = self.tokenizer.next
+        if token.type != NL:
+            raise Exception()
+        
+    def parse_comando(self):
+        token = self.tokenizer.next
+        if token.type == RUA:
+            self.tokenizer.selectNext()
+            token = self.tokenizer.next
+            if token.type == ESTA:
+                self.tokenizer.selectNext()
+                token = self.tokenizer.next
+                if token.type == FECHADA or token.type == ABERTA:
+                    self.tokenizer.selectNext()
+                    token = self.tokenizer.next
+                raise Exception()
+            raise Exception()
+        elif token.type == EM:
+            self.tokenizer.selectNext()
+            if token.type == INT:
+                self.tokenizer.selectNext()
+                token = self.tokenizer.next
+                if token.type == METROS:
+                    self.tokenizer.selectNext()
+                    token = self.tokenizer.next
+                    if token.type == COMMA: 
+                        self.tokenizer.selectNext()
+                        token = self.tokenizer.next
+                        if token.type == VIRE:
+                            self.tokenizer.selectNext()
+                            token = self.tokenizer.next
+                            if token.type == DIREITA or token.type == ESQUERDA:
+                                self.tokenizer.selectNext()
+                            raise Exception()
+                        raise Exception()
+                    raise Exception()
+                raise Exception()
+            raise Exception()
+        elif token.type == SE:
+            self.tokenizer.selectNext()
+            self.parse_rel_expression()
+            self.parse_direcao()
+        elif token.type == ENQUANTO:
+            self.tokenizer.selectNext()
+            self.parse_rel_expression()
+            self.parse_direcao()
+        elif token.type == ROTATORIA:
+            self.tokenizer.selectNext()
+            self.parse_rel_expression()
+            self.parse_direcao()
+        raise Exception()
+    
+    def parse_rel_expression(self):
+        self.parse_expression()
+        token = self.tokenizer.next
+        while token.type == MAIOR or token.type == MENOR:
+            
+            if token.type == MAIOR:
+                self.tokenizer.selectNext()
+            if token.type == MENOR:
+                self.tokenizer.selectNext()
+            token = self.tokenizer.next
+
+    def parse_expression(self):
+        no = self.parse_factor()
+        token = self.tokenizer.next
+        while token.type == MAIS or token.type == MENOS:
+            
+            if token.type == MAIS:
+                self.tokenizer.selectNext()
+            elif token.type == MENOS:
+                self.tokenizer.selectNext()
+            token = self.tokenizer.next
+                
+        return no
+    
+    def parse_factor(self):
+        token = self.tokenizer.next
+        if token.type == INT:
+            self.tokenizer.selectNext()
+        elif token.type == IDEN:
+            self.tokenizer.selectNext()
+        raise Exception()
