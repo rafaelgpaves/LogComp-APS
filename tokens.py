@@ -18,9 +18,13 @@ ENQUANTO = "enquanto"
 SE = "se"
 MAIS = "mais"
 MENOS = "menos"
+MAIOR = "maior"
+MENOR = "menor"
 EM = "em"
 METROS = "metros"
 VIRE = "vire"
+DIREITA = "direita"
+ESQUERDA = "esquerda"
 CHEGARA = "chegará"
 ESTA = "está"
 NL = "newline"
@@ -41,9 +45,13 @@ KEYWORDS = {
     "Se": SE,
     "mais": MAIS,
     "menos": MENOS,
+    "maior": MAIOR,
+    "menor": MENOR,
     "Em": EM,
     "metros": METROS,
     "vire": VIRE,
+    "direita": DIREITA,
+    "esquerda": ESQUERDA,
     "chegará": CHEGARA,
     "está": ESTA,
 }
