@@ -296,6 +296,28 @@ class Parser:
                     raise Exception("Token errado")
                 raise Exception("Token errado")
             raise Exception("Token errado")
+        elif token.type == CONTINUE:
+            no = Continuar("", [])
+            self.tokenizer.selectNext()
+            token = self.tokenizer.next
+            if token.type == POR:
+                self.tokenizer.selectNext()
+                token = self.tokenizer.next
+                if token.type == INT:
+                    num = IntVal(token.value, [])
+                    no.children.append(num)
+                    self.tokenizer.selectNext()
+                    token = self.tokenizer.next
+                    if token.type == METROS:
+                        self.tokenizer.selectNext()
+                        token = self.tokenizer.next
+                        if token.type == NL:
+                            self.tokenizer.selectNext()
+                            return no
+                        raise Exception("Token errado")
+                    raise Exception("Token errado")
+                raise Exception("Token errado")
+            raise Exception("Token errado")
         elif token.type == RUA:
             no = RuaDec("", [])
             self.tokenizer.selectNext()

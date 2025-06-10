@@ -27,6 +27,8 @@ DIREITA = "direita"
 ESQUERDA = "esquerda"
 CHEGARA = "chegará"
 ESTA = "esta"
+CONTINUE = "continue"
+POR = "por"
 NL = "newline"
 EOF = ""
 
@@ -54,6 +56,8 @@ KEYWORDS = {
     "esquerda": ESQUERDA,
     "chegará": CHEGARA,
     "esta": ESTA,
+    "Continue": CONTINUE,
+    "por": POR,
 }
 
 VAR = "var"

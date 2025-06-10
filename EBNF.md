@@ -2,13 +2,15 @@ SINTAXE = "Partida: " RUA \n "Destino: " RUA \n DIREÇÕES
 
 DIREÇÕES = {COMANDO}+
 
-COMANDO = ATRIB | VIRAR | SE | ENQUANTO
+COMANDO = ATRIB | CONTINUAR | VIRAR | SE | ENQUANTO
 
 BLOCO = {\n "-" COMANDO}+
 
 ATRIB = nome-rua " está " [aberta|fechada]
 
-VIRAR = Vire " [direita|esquerda] "em " numero " metros em " nome-rua
+CONTINUAR = "Continue por " numero " metros"
+
+VIRAR = "Vire " [direita|esquerda] " em " numero " metros em " nome-rua
 
 SE = "Se " nome-rua " está " [aberta|fechada] ":" BLOCO
 

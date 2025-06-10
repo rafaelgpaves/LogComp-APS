@@ -185,6 +185,30 @@ class Virar(Node):
         st.setter("curr_y", ("int", y_new, False))
         plt.plot(X, Y, color="black", linewidth=5)
 
+class Continuar(Node):
+    def Evaluate(self, st):
+        coord = self.children[0].Evaluate(st)[1]
+        x = st.getter("curr_x")[1]
+        y = st.getter("curr_y")[1]
+        dir = st.getter("curr_dir")[1]
+        if dir == "x-pos":
+            x_new = x + coord
+            y_new = y
+        elif dir == "y-pos":
+            x_new = x
+            y_new = y + coord
+        elif dir == "x-neg":
+            x_new = x - coord
+            y_new = y
+        elif dir == "y-neg":
+            x_new = x
+            y_new = y - coord
+        X = [x, x_new]
+        Y = [y, y_new]
+        st.setter("curr_x", ("int", x_new, False))
+        st.setter("curr_y", ("int", y_new, False))
+        plt.plot(X, Y, color="black", linewidth=5)
+
 class RuaDec(Node):
     def Evaluate(self, st):
         nome_rua = self.children[0].Evaluate(st)[1]
