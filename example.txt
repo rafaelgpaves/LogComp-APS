@@ -1,0 +1,14 @@
+Partida: Rua X, 1000
+Destino: Rua Z, 10000
+Vire direita em 500 metros em Rua X
+Vire direita em 500 metros em Rua X
+Rua B está fechada
+Rua A está aberta
+Se Rua A está aberta:
+- Vire direita em 500 metros em Rua X
+- Vire esquerda em 52222200 metros em Rua Xdaw
+- Vire direita em 500 metros em Rua X
+Se Rua Addawdw está fechada:
+- Vire esquerda em 2313231 metros em Rua X
+Enquanto Rua A está fechada:
+- Vire direita em 500 metros em Rua X
