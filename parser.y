@@ -1,19 +1,54 @@
-%type <dval> expression
+%{
+    #include <stdio.h>
+%}
+
+%token RUA PARTIDA DESTINO FECHADA ABERTA ENQUANTO SE EM METROS VIRE DIREITA ESQUERDA ESTA
+%token COLON COMMA 
+%token IDEN NUMERO
+%token NL EOL
+%token FUNC ARG ROTATORIA SAIDA RETORNO CHEGARA MAIS MENOS MAIOR MENOR TOPCAO SEMICOLON
 
 %%
 
-sintaxe: PARTIDA COLON RUA IDEN NL DESTINO COLON RUA IDEN NL direcoes
+sintaxe: 
+    PARTIDA COLON RUA IDEN COMMA NUMERO NL DESTINO COLON RUA IDEN COMMA NUMERO NL direcoes
+    ;
 
-direcoes: comando NL | direcoes comando NL
+direcoes: 
+    comando 
+    | direcoes comando
+    ;
 
-comando: atribuicao | se | enquanto
+comando: atribuicao | virar | se | enquanto;
 
-atribuicao: RUA IDEN ESTA ABERTA | FECHADA
+bloco:
+    NL TOPCAO comando
+    | bloco TOPCAO comando
 
-se: SE condicao comando
+atribuicao: RUA IDEN ESTA estado NL;
 
-enquanto: ENQUANTO condicao comando
+virar: VIRE direcao EM NUMERO METROS EM RUA IDEN NL;
 
-condicao: NUMERO MAIOR | MENOR NUMERO
+se: SE condicao COLON bloco;
+
+enquanto: ENQUANTO condicao COLON bloco;
+
+condicao: RUA IDEN ESTA estado;
+
+direcao: DIREITA | ESQUERDA;
+
+estado: ABERTA | FECHADA;
 
 %%
+
+int main(int argc, char **argv)
+{
+    yyparse();
+
+    return 0;
+}
+
+yyerror(char *s)
+{
+    fprintf(stderr, "error: %s\n", s);
+}
