@@ -209,6 +209,12 @@ class Se(Node):
         if estado_rua == estado_comparacao:
             self.children[1].Evaluate(st)
 
+class Enquanto(Node):
+    def Evaluate(self, st):
+        estado_comparacao = self.value == FECHADA
+        while st.getter(self.children[0].Evaluate(st)[1])[2] == estado_comparacao:
+            self.children[1].Evaluate(st)
+
 
 class Identifier(Node):
     def Evaluate(self, st):

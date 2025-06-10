@@ -351,18 +351,48 @@ class Parser:
                     raise Exception("Token errado")
                 raise Exception("Token errado")
             raise Exception("Token errado")
+        elif token.type == ENQUANTO:
+            no = Enquanto("", [])
+            self.tokenizer.selectNext()
+            token = self.tokenizer.next
+            if token.type == RUA:
+                self.tokenizer.selectNext()
+                token = self.tokenizer.next
+                if token.type == IDEN:
+                    no.children.append(StrVal(token.value, []))
+                    self.tokenizer.selectNext()
+                    token = self.tokenizer.next
+                    if token.type == ESTA:
+                        self.tokenizer.selectNext()
+                        token = self.tokenizer.next
+                        if token.type == FECHADA or token.type == ABERTA:
+                            estado = token.type
+                            no.value = estado
+                            self.tokenizer.selectNext()
+                            token = self.tokenizer.next
+                            if token.type == COLON:
+                                self.tokenizer.selectNext()
+                                token = self.tokenizer.next
+                                if token.type == NL:
+                                    self.tokenizer.selectNext()
+                                    no.children.append(self.parse_bloco())
+                                    return no
+                                raise Exception("Token errado")
+                            raise Exception("Token errado")
+                        raise Exception("Token errado")
+                    raise Exception("Token errado")
+                raise Exception("Token errado")
+            raise Exception("Token errado")
         raise Exception("Token errado")
 
     def parse_bloco(self):
         no = Block("", [])
         token = self.tokenizer.next
-        while token.type == OPTION:
+        while True:
+            if token.type != OPTION:
+                break
             self.tokenizer.selectNext()
             no.children.append(self.parse_commando())
-            # token = self.tokenizer.next
-            # if token.type != NL:
-            #     raise Exception("Token errado")
-            # self.tokenizer.selectNext()
             token = self.tokenizer.next
         return no
 
@@ -741,6 +771,7 @@ def main():
     data = image.imread(f"{sys.argv[1]}.png")
     plt.imshow(data)
     ast.Evaluate(st)
+    plt.title(f"Desenho para a rota em {sys.argv[1]}")
     plt.savefig(f"./{sys.argv[1]}.png")
     plt.show()
 
