@@ -1,10 +1,18 @@
-SINTAXE = "Partida: " RUA\n DIREÇÕES "Destino: " RUA
+SINTAXE = "Partida: " RUA \n "Destino: " RUA \n DIREÇÕES
 
-DIREÇÕES = COMANDO \n
+DIREÇÕES = {COMANDO}+
 
-COMANDO = "Em " numero " metros," AÇÃO " em " RUA
+COMANDO = ATRIB | VIRAR | SE | ENQUANTO
 
-AÇÃO = virar | rotatõria | continuar
+BLOCO = {\n "-" COMANDO}+
+
+ATRIB = nome-rua " está " [aberta|fechada]
+
+VIRAR = Vire " [direita|esquerda] "em " numero " metros em " nome-rua
+
+SE = "Se " nome-rua " está " [aberta|fechada] ":" BLOCO
+
+ENQUANTO = "Enquanto " nome-rua " está " [aberta|fechada] ":" BLOCO
 
 RUA = nome-rua, numero
 
