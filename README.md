@@ -39,6 +39,10 @@ Veja o [EBNF](EBNF.md)
     - Após rodar, ele é mostrado automaticamente
     - É salvo num arquivo .png, com o mesmo nome do arquivo de entrada
 
+O "caminho" começa para a direita, mas é possível alterar isso virando em 0 metros.
+
+A condicional de posição atual compara a posição de um eixo só (a de onde está o movimento). Se estiver indo para a direita, a comparação *local maior que 100* irá comparar se x é maior que 100; se estiver indo para baixo, a comparação *local menor que 400* irá comparar se y é menor que 400.
+
 ### Algumas peculiaridades
 
 Essa linguagem foi feita para ser o mais próxima possível de uma rota gerada por algum aplicativo de navegação. Isso significa que:
