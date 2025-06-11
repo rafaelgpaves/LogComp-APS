@@ -29,6 +29,8 @@ CHEGARA = "chegará"
 ESTA = "esta"
 CONTINUE = "continue"
 POR = "por"
+LOCAL = "local"
+QUE = "que"
 NL = "newline"
 EOF = ""
 
@@ -58,6 +60,8 @@ KEYWORDS = {
     "esta": ESTA,
     "Continue": CONTINUE,
     "por": POR,
+    "local": LOCAL,
+    "que": QUE,
 }
 
 VAR = "var"

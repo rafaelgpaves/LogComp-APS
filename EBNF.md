@@ -12,9 +12,11 @@ CONTINUAR = "Continue por " numero " metros"
 
 VIRAR = "Vire " [direita|esquerda] " em " numero " metros em " nome-rua
 
-SE = "Se " nome-rua " está " [aberta|fechada] ":" BLOCO
+SE = "Se " cond ":" BLOCO
 
-ENQUANTO = "Enquanto " nome-rua " está " [aberta|fechada] ":" BLOCO
+ENQUANTO = "Enquanto " cond ":" BLOCO
+
+cond = {nome-rua " está " [aberta|fechada]} | {" local " [maior|menor] que numero}
 
 RUA = nome-rua, numero
 

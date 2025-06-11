@@ -345,7 +345,33 @@ class Parser:
             no = Se("", [])
             self.tokenizer.selectNext()
             token = self.tokenizer.next
-            if token.type == RUA:
+            if token.type == LOCAL:
+                self.tokenizer.selectNext()
+                token = self.tokenizer.next
+                if token.type == MAIOR or token.type == MENOR:
+                    no.value = token.type
+                    self.tokenizer.selectNext()
+                    token = self.tokenizer.next
+                    if token.type == QUE:
+                        self.tokenizer.selectNext()
+                        token = self.tokenizer.next
+                        if token.type == INT:
+                            no.children.append(IntVal(token.value, []))
+                            self.tokenizer.selectNext()
+                            token = self.tokenizer.next
+                            if token.type == COLON:
+                                self.tokenizer.selectNext()
+                                token = self.tokenizer.next
+                                if token.type == NL:
+                                    self.tokenizer.selectNext()
+                                    no.children.append(self.parse_bloco())
+                                    return no
+                                raise Exception("Token errado")
+                            raise Exception("Token errado")
+                        raise Exception("Token errado")
+                    raise Exception("Token errado")
+                raise Exception("Token errado")
+            elif token.type == RUA:
                 self.tokenizer.selectNext()
                 token = self.tokenizer.next
                 if token.type == IDEN:
@@ -377,7 +403,33 @@ class Parser:
             no = Enquanto("", [])
             self.tokenizer.selectNext()
             token = self.tokenizer.next
-            if token.type == RUA:
+            if token.type == LOCAL:
+                self.tokenizer.selectNext()
+                token = self.tokenizer.next
+                if token.type == MAIOR or token.type == MENOR:
+                    no.value = token.type
+                    self.tokenizer.selectNext()
+                    token = self.tokenizer.next
+                    if token.type == QUE:
+                        self.tokenizer.selectNext()
+                        token = self.tokenizer.next
+                        if token.type == INT:
+                            no.children.append(IntVal(token.value, []))
+                            self.tokenizer.selectNext()
+                            token = self.tokenizer.next
+                            if token.type == COLON:
+                                self.tokenizer.selectNext()
+                                token = self.tokenizer.next
+                                if token.type == NL:
+                                    self.tokenizer.selectNext()
+                                    no.children.append(self.parse_bloco())
+                                    return no
+                                raise Exception("Token errado")
+                            raise Exception("Token errado")
+                        raise Exception("Token errado")
+                    raise Exception("Token errado")
+                raise Exception("Token errado")
+            elif token.type == RUA:
                 self.tokenizer.selectNext()
                 token = self.tokenizer.next
                 if token.type == IDEN:

@@ -227,17 +227,69 @@ class RuaDec(Node):
 
 class Se(Node):
     def Evaluate(self, st):
-        rua = self.children[0].Evaluate(st)[1]
-        estado_rua = st.getter(rua)[2]
-        estado_comparacao = self.value == FECHADA
-        if estado_rua == estado_comparacao:
-            self.children[1].Evaluate(st)
+        if isinstance(self.children[0], StrVal):
+            rua = self.children[0].Evaluate(st)[1]
+            estado_rua = st.getter(rua)[2]
+            estado_comparacao = self.value == FECHADA
+            if estado_rua == estado_comparacao:
+                self.children[1].Evaluate(st)
+        else:
+            posicao = self.children[0].Evaluate(st)[1]
+            x = st.getter("curr_x")[1]
+            y = st.getter("curr_y")[1]
+            dir = st.getter("curr_dir")[1]
+            if dir == "x-pos" or dir == "x-neg":
+                if self.value == MAIOR:
+                    estado_comparacao = x > posicao
+                else:
+                    estado_comparacao = x < posicao
+            elif dir == "y-pos" or dir == "y-neg":
+                if self.value == MAIOR:
+                    estado_comparacao = y > posicao
+                else:
+                    estado_comparacao = y < posicao
+            if estado_comparacao:
+                self.children[1].Evaluate(st)
+            
 
 class Enquanto(Node):
     def Evaluate(self, st):
-        estado_comparacao = self.value == FECHADA
-        while st.getter(self.children[0].Evaluate(st)[1])[2] == estado_comparacao:
-            self.children[1].Evaluate(st)
+        if isinstance(self.children[0], StrVal):
+            estado_comparacao = self.value == FECHADA
+            while st.getter(self.children[0].Evaluate(st)[1])[2] == estado_comparacao:
+                self.children[1].Evaluate(st)
+        else:
+            posicao = self.children[0].Evaluate(st)[1]
+            x = st.getter("curr_x")[1]
+            y = st.getter("curr_y")[1]
+            dir = st.getter("curr_dir")[1]
+            if dir == "x-pos" or dir == "x-neg":
+                if self.value == MAIOR:
+                    estado_comparacao = x > posicao
+                else:
+                    estado_comparacao = x < posicao
+            elif dir == "y-pos" or dir == "y-neg":
+                if self.value == MAIOR:
+                    estado_comparacao = y > posicao
+                else:
+                    estado_comparacao = y < posicao
+            while estado_comparacao:
+                self.children[1].Evaluate(st)
+                posicao = self.children[0].Evaluate(st)[1]
+                x = st.getter("curr_x")[1]
+                y = st.getter("curr_y")[1]
+                dir = st.getter("curr_dir")[1]
+                if dir == "x-pos" or dir == "x-neg":
+                    if self.value == MAIOR:
+                        estado_comparacao = x > posicao
+                    else:
+                        estado_comparacao = x < posicao
+                elif dir == "y-pos" or dir == "y-neg":
+                    if self.value == MAIOR:
+                        estado_comparacao = y > posicao
+                    else:
+                        estado_comparacao = y < posicao
+                
 
 
 class Identifier(Node):
