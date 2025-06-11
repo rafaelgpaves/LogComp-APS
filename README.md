@@ -22,4 +22,14 @@ Veja o [EBNF](EBNF.md)
     - Após rodar, ele é mostrado automaticamente
     - É salvo num arquivo .png, com o mesmo nome do arquivo de entrada
 
+### Algumas peculiaridades
+
+Essa linguagem foi feita para ser o mais próxima possível de uma rota gerada por algum aplicativo de navegação. Isso significa que:
+- Não existem comentários
+- Não devem existir linhas vazias (só com *\n*), **com exceção da última, que deve ser vazia** (talvez não dê para ver nos exemplos, mas é obrigatório que exista uma linha vazia no final do arquivo)
+- Embora na realidade existam avenidas, vias, túneis etc, só foram implementadas ruas.
+- Embora na realidade ruas comecem com letra maiúscula e possam ter mais de uma palavra, nesta implementação ruas podem começar com letra minúscula e devem ser uma única palavra
+
+### Exemplos
+
 Veja os exemplos [aqui](./examples/)
