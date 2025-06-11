@@ -1,7 +1,7 @@
 Partida: Rua X, 1000
 Destino: Rua Z, 10000
 Vire direita em 100 metros em Rua X
-Vire esquerda em 100 metros em Rua Y
+Continue por 100 metros
 Vire esquerda em 50 metros em Rua Y
 Vire esquerda em 300 metros em Rua Y
 Rua Q esta aberta
@@ -9,5 +9,10 @@ Se Rua Q esta fechada:
 - Vire esquerda em 20 metros em Rua Y
 Enquanto Rua Q esta aberta:
 - Vire direita em 20 metros em Rua Y
-- Vire direita em 40 metros em Rua Y
+- Continue por 40 metros
 - Rua Q esta fechada
+Vire esquerda em 30 metros em Rua Y
+Vire esquerda em 30 metros em Rua Y
+Continue por 30 metros
+Enquanto local maior que 100:
+- Continue por 300 metros
