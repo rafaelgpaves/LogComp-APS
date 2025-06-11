@@ -23,6 +23,16 @@ Teste algum arquivo .rota
 python main.py <arquivo.rota>
 ```
 
+Caso necessário, baixe matplotlib
+```
+pip install matplotlib
+```
+
+Também é possível testar a parte de tokenizer/parser feita com Flex/Bison:
+```
+./flex_bison < <arquivo.rota>
+```
+
 ## EBNF
 
 Veja o [EBNF](EBNF.md)
