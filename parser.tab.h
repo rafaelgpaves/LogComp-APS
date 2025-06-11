@@ -67,24 +67,19 @@ extern int yydebug;
     DIREITA = 268,                 /* DIREITA  */
     ESQUERDA = 269,                /* ESQUERDA  */
     ESTA = 270,                    /* ESTA  */
-    COLON = 271,                   /* COLON  */
-    COMMA = 272,                   /* COMMA  */
-    IDEN = 273,                    /* IDEN  */
-    NUMERO = 274,                  /* NUMERO  */
-    NL = 275,                      /* NL  */
-    EOL = 276,                     /* EOL  */
-    FUNC = 277,                    /* FUNC  */
-    ARG = 278,                     /* ARG  */
-    ROTATORIA = 279,               /* ROTATORIA  */
-    SAIDA = 280,                   /* SAIDA  */
-    RETORNO = 281,                 /* RETORNO  */
-    CHEGARA = 282,                 /* CHEGARA  */
-    MAIS = 283,                    /* MAIS  */
-    MENOS = 284,                   /* MENOS  */
-    MAIOR = 285,                   /* MAIOR  */
-    MENOR = 286,                   /* MENOR  */
-    TOPCAO = 287,                  /* TOPCAO  */
-    SEMICOLON = 288                /* SEMICOLON  */
+    MAIOR = 271,                   /* MAIOR  */
+    MENOR = 272,                   /* MENOR  */
+    CONTINUE = 273,                /* CONTINUE  */
+    POR = 274,                     /* POR  */
+    LOCAL = 275,                   /* LOCAL  */
+    QUE = 276,                     /* QUE  */
+    COLON = 277,                   /* COLON  */
+    COMMA = 278,                   /* COMMA  */
+    TOPCAO = 279,                  /* TOPCAO  */
+    IDEN = 280,                    /* IDEN  */
+    NUMERO = 281,                  /* NUMERO  */
+    NL = 282,                      /* NL  */
+    EOL = 283                      /* EOL  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif

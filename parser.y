@@ -2,11 +2,10 @@
     #include <stdio.h>
 %}
 
-%token RUA PARTIDA DESTINO FECHADA ABERTA ENQUANTO SE EM METROS VIRE DIREITA ESQUERDA ESTA
-%token COLON COMMA 
+%token RUA PARTIDA DESTINO FECHADA ABERTA ENQUANTO SE EM METROS VIRE DIREITA ESQUERDA ESTA MAIOR MENOR CONTINUE POR LOCAL QUE
+%token COLON COMMA TOPCAO
 %token IDEN NUMERO
 %token NL EOL
-%token FUNC ARG ROTATORIA SAIDA RETORNO CHEGARA MAIS MENOS MAIOR MENOR TOPCAO SEMICOLON
 
 %%
 
@@ -19,7 +18,7 @@ direcoes:
     | direcoes comando
     ;
 
-comando: atribuicao | virar | se | enquanto;
+comando: atribuicao | continuar | virar | se | enquanto;
 
 bloco:
     NL TOPCAO comando
@@ -27,17 +26,24 @@ bloco:
 
 atribuicao: RUA IDEN ESTA estado NL;
 
+continuar: CONTINUE POR NUMERO METROS NL;
+
 virar: VIRE direcao EM NUMERO METROS EM RUA IDEN NL;
 
 se: SE condicao COLON bloco;
 
 enquanto: ENQUANTO condicao COLON bloco;
 
-condicao: RUA IDEN ESTA estado;
+condicao: 
+    RUA IDEN ESTA estado
+    | LOCAL relacao QUE NUMERO
+    ;
 
 direcao: DIREITA | ESQUERDA;
 
 estado: ABERTA | FECHADA;
+
+relacao: MAIOR | MENOR
 
 %%
 
